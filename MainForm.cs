@@ -85,7 +85,6 @@ namespace XCWallPaper
             EffectButton.Click += (sender, e) =>
             {
                 OpenUrlInBrowser("http://47.109.41.86");
-                //OpenUrlInBrowser("https://www.bilibili.com");
             };
 
             // Creator Page
@@ -93,7 +92,7 @@ namespace XCWallPaper
             CreatorButton.Click += (sender, e) => ShowPage(creatorPage);
 
             // Account Page
-            AccountButton.Click += (sender, e) =>
+            AccountButton.Click += (sender, e) =>   
             {
                 // 创建遮罩层
                 AntdUI.Panel maskPanel = new AntdUI.Panel();
