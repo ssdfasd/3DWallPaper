@@ -49,7 +49,7 @@ public class ActiveMessage : IPCMessage
 /// </summary>
 [Serializable]
 public class WallPaperUpdateMessage : IPCMessage
-{
+{   
     public byte[] ImageData { get; set; }  // 图片数据
     public byte[] DepthData { get; set; }  // 深度图数据    
 
