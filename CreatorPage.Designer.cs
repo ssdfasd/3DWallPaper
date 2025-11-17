@@ -151,6 +151,8 @@ namespace XCWallPaper
             PreviewButton.Size = new Size(120, 80);
             PreviewButton.Location = new Point(530, 670);
             PreviewButton.Name = "CompileButton";
+            PreviewButton.Text = "解包";
+            PreviewButton.Font = new Font("Microsoft YaHei UI", 16F);
             PreviewButton.Click += PreviewButton_Click;
             UITool.Instance.ArcRegion(PreviewButton, 16);
             //
@@ -159,6 +161,8 @@ namespace XCWallPaper
             SubmitButton.Size = new Size(120, 80);
             SubmitButton.Location = new Point(360, 670);
             SubmitButton.Name = "SubmitButton";
+            SubmitButton.Text = "打包";
+            SubmitButton.Font = new Font("Microsoft YaHei UI", 16F);
             SubmitButton.Click += SubmitButton_Click;
             UITool.Instance.ArcRegion(SubmitButton, 16);
             //

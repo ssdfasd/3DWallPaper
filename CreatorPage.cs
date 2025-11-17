@@ -344,6 +344,23 @@ void Main(uint3 id : SV_DispatchThreadID)
         }
         private void PreviewButton_Click(object sender, EventArgs e)
         {
+            // 课程展示，这里暂时设置成了解包按钮
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "特效文件|*.xcpe";
+                openFileDialog.Multiselect = false;  // 启用多选
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string packageName = Path.GetFileNameWithoutExtension(openFileDialog.FileNames[0]);
+                    string packagePath = EffectPackager.Instance.GetPackagePath(packageName);
+                    Console.WriteLine(packagePath);
+                    var effectPackage = EffectPackager.Instance.UnpackageEffect(packagePath, "my_secure_key");
+                    EffectPlayer.Instance.AddEffect(effectPackage);
+                }
+            }
+
+            return;
+            /*
             // Clear Effects
             EffectPlayer.Instance.ClearEffects();
 
@@ -371,9 +388,10 @@ void Main(uint3 id : SV_DispatchThreadID)
             // Add Effect
             EffectPlayer.Instance.AddEffect(effectPackage);
 
-            EffectPlayer.Instance.UpdateEffectParameters("00000000", new EffectParameterMessage { PassID = 1, Type = "float3", Name = "dd", Value = new float[] { 1, 0, 0 } });
+            //EffectPlayer.Instance.UpdateEffectParameters("00000000", new EffectParameterMessage { PassID = 1, Type = "float3", Name = "dd", Value = new float[] { 1, 0, 0 } });
 
-            EffectPlayer.Instance.RemoveEffect("00000000");////////////////////////////////////////////////////////////////////////////////////////////////
+            //EffectPlayer.Instance.RemoveEffect("00000000");////////////////////////////////////////////////////////////////////////////////////////////////
+            */
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
@@ -388,6 +406,7 @@ void Main(uint3 id : SV_DispatchThreadID)
                 form.FormBorderStyle = FormBorderStyle.None;
                 form.MaximizeBox = false;
                 form.MinimizeBox = false;
+                form.BackColor = Color.FromArgb(155, 155, 155);
                 UITool.Instance.ArcRegion(form, 16);
 
 
@@ -483,8 +502,8 @@ void Main(uint3 id : SV_DispatchThreadID)
             }
 
             // 完整解封装
-            var effectPackage = EffectPackager.Instance.UnpackageEffect(packagePath, "my_secure_key");
-            Test.Instance.ShowEffectPackage(effectPackage, PathManager.Instance.TempDirectory);
+            //var effectPackage = EffectPackager.Instance.UnpackageEffect(packagePath, "my_secure_key");
+            //Test.Instance.ShowEffectPackage(effectPackage, PathManager.Instance.TempDirectory);
 
             ///////////////////////////////////////上传服务器
         }
